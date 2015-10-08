@@ -21,7 +21,7 @@ import java.util.Date;
 /**
  * Created by parce on 02/10/15.
  */
-public class Analysis extends FileGenerator {
+public class Analysis {
     private String accession;
     private String alias;
     private String title;
@@ -32,9 +32,15 @@ public class Analysis extends FileGenerator {
     private String vcfReferenceAccession;
     private Boolean hiddenInEva;
 
-    public Analysis(String accession, String alias, String title, String centerName, String description, Date date,
+    public StudyComponent studyComponent;
+    public FileGenerator fileGenerator = new FileGenerator();
+
+    public Analysis(StudyComponent studyComponent,
+                    String accession, String alias, String title, String centerName, String description, Date date,
                     String vcfReference, String vcfReferenceAccession, Boolean hiddenInEva)
     {
+        this.studyComponent = studyComponent;
+
         this.accession = accession;
         this.alias = alias;
         this.title = title;

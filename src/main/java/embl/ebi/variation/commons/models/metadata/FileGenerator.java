@@ -23,27 +23,12 @@ import java.util.Set;
 /**
  * Created by parce on 02/10/15.
  */
-public abstract class FileGenerator {
+class FileGenerator {
 
     protected Set<File> files;
     protected Dataset dataset;
-    protected Set<Study> studies;
 
-    //TODO does FileGenerator need to have study in the constructor, otherwise it's possible to have a floating filegenerator, not attached to a study. e.g.:
-//    protected FileGenerator(Study study){
-//        this(study, null);
-//    }
-//
-//    protected FileGenerator(Study study, Dataset dataset){
-//        this(study, dataset, new HashSet<File>());
-//    }
-//
-//    protected FileGenerator(Study study, Dataset dataset, Set<File> files) {
-//        this.dataset = dataset;
-//        setFiles(files);
-//        studies = new HashSet<Study>();
-//        addStudy(study);
-//    }
+    protected FileGenerator(){}
 
     protected FileGenerator(Dataset dataset){
         this(dataset, new HashSet<File>());
@@ -66,6 +51,10 @@ public abstract class FileGenerator {
         this.files.add(file);
     }
 
+//    public void removeStudy(Study study){
+//        this.studies.remove(study);
+//    }
+
     public void setFiles(Set<File> files) {
         this.files.clear();
         for (File f : files) {
@@ -76,18 +65,4 @@ public abstract class FileGenerator {
     public Dataset getDataset() {
         return dataset;
     }
-
-    public Set<Study> getStudies() {
-        return Collections.unmodifiableSet(studies);
-    }
-
-    void addStudy(Study study){
-        studies.add(study);
-    }
-
-    @Override
-    public abstract boolean equals(Object e);
-
-    @Override
-    public abstract int hashCode();
 }
